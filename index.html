@@ -1,71 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />    
+    <meta charset="utf-8" />
     <title>Color Generation Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap-color-picker.css" rel="stylesheet">
-    
+
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="bootstrap-color-picker.js"></script>    
+    <script src="bootstrap-color-picker.js"></script>
 </head>
+
 <body>
     <style>
-        body{
+        body {
             background-color: black;
         }
-        .colors{width:100px;height:30px;margin:2px}
+
+        .colors {
+            width: 100px;
+            height: 30px;
+            margin: 2px
+        }
     </style>
 
     <div id="custom-picker" style="width:30%;margin:10px" class="input-group colorpicker-component">
         <input type="text" id="color" onchange="generate()" class="form-control" />
-        <span class="input-group-addon"><i></i></span>        
+        <span class="input-group-addon"><i></i></span>
     </div>
 
     <br><br><br>
     <h3 style="color:white">Generated Color shades</h3>
     <div id="colorsGenerated"></div>
     <script>
-        $(function() {
-            $('#custom-picker').colorpicker({                
+        $(function () {
+            $('#custom-picker').colorpicker({
                 format: 'rgb'
             });
         });
 
-    function generate()
-    {
-  
-  var color = document.getElementById("color").value;
-  console.log(color);
-  
-  var colorData=color.split(',')
-  var r= parseInt(colorData[0].replace("rgb(",""));
-  var g=parseInt(colorData[1]);
-  var b=parseInt(colorData[2].replace(")",""));  
+        function generate() {
 
-  var generatedColor="";
-  
-  for(var i=0;i<=20;i++)
-  {    
-    generatedColor+="<div class='colors' style='background-color:rgb("+r+","+g+","+b+")'></div>";
-    
-    if(r==255 && g==255 && b==255)
-    break;
-    
-    r+=20;
-    g+=20;
-    b+=20;
-    
-    if(r>255) r=255;
-    if(g>255) g=255;
-    if(b>255) b=255;    
-    
-    console.log(r,g,b);    
-  }
-  document.getElementById("colorsGenerated").innerHTML = generatedColor;  
-}
+            var color = document.getElementById("color").value;
+            console.log(color);
+
+            var colorData = color.split(',')
+            var r = parseInt(colorData[0].replace("rgb(", ""));
+            var g = parseInt(colorData[1]);
+            var b = parseInt(colorData[2].replace(")", ""));
+
+            var generatedColor = "";
+
+            for (var i = 0; i <= 20; i++) {
+                generatedColor += "<div class='colors' style='background-color:rgb(" + r + "," + g + "," + b + ")'></div>";
+
+                if (r == 255 && g == 255 && b == 255)
+                    break;
+
+                r += 20;
+                g += 20;
+                b += 20;
+
+                if (r > 255) r = 255;
+                if (g > 255) g = 255;
+                if (b > 255) b = 255;
+
+                console.log(r, g, b);
+            }
+            document.getElementById("colorsGenerated").innerHTML = generatedColor;
+        }
     </script>
 </body>
+
 </html>
